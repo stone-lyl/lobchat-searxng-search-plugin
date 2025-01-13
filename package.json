@@ -1,0 +1,23 @@
+{
+  "name": "lobsearch-web-search",
+  "private": true,
+  "scripts": {
+    "dev": "NODE_ENV=development bun run --hot src/index.ts",
+    "dev:vc": "vc dev",
+    "build:vc": "echo 'No build for vc'",
+    "deploy": "vc",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@lobehub/chat-plugin-sdk": "^1.32.4",
+    "@lobehub/chat-plugins-gateway": "^1.9.0",
+    "hono": "^4.6.16"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.5",
+    "prettier": "^3.4.2",
+    "vercel": "^39.2.6",
+    "yarn": "^1.22.22"
+  },
+  "prettier": {}
+}

@@ -1,0 +1,47 @@
+{
+  "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
+  "version": "1",
+  "identifier": "lobechat-web",
+  "author": "rajput-hemant",
+  "homepage": "https://github.com/proghit/lobechat-web-search",
+  "gateway": "https://lobechat-websearch.vercel.app/api/gateway",
+  "meta": {
+    "avatar": "https://banner2.cleanpng.com/20180413/rfe/avfci721i.webp",
+    "tags": ["web", "search"],
+    "title": "LobeChat Web Search",
+    "description": "Searches Google through their official CSE API."
+  },
+  "settings": {
+    "type": "object",
+    "required": ["ENGINE_ID", "API_KEY"],
+    "properties": {
+      "ENGINE_ID": {
+        "title": "Engine ID",
+        "type": "string",
+        "format": "password"
+      },
+      "API_KEY": {
+        "title": "API Key",
+        "type": "string",
+        "format": "password"
+      }
+    }
+  },
+  "api": [
+    {
+      "name": "searchWeb",
+      "url": "https://lobechat-websearch.vercel.app/api/search",
+      "description": "Search Google for relevant web pages.",
+      "parameters": {
+        "required": ["query"],
+        "type": "object",
+        "properties": {
+          "query": {
+            "type": "string",
+            "description": "What the user is looking for"
+          }
+        }
+      }
+    }
+  ]
+}
