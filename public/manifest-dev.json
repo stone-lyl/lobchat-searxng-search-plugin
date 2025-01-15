@@ -2,14 +2,14 @@
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "version": "1",
   "identifier": "web",
-  "author": "rajput-hemant",
-  "homepage": "https://github.com/proghit/lobechat-web-search",
+  "author": "Proghit",
+  "homepage": "https://github.com/proghit/lobechat-web-plugin",
   "gateway": "http://localhost:3000/api/gateway",
   "meta": {
     "avatar": "https://banner2.cleanpng.com/20180413/rfe/avfci721i.webp",
     "tags": ["web", "search"],
     "title": "Web",
-    "description": "Searches Google through their official CSE API."
+    "description": "Smart web search that reads and analyzes pages to deliver comprehensive answers from Google results."
   },
   "settings": {
     "type": "object",

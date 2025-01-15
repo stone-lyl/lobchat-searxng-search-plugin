@@ -10,12 +10,8 @@ export const gateway = new Hono<{ Bindings: Bindings }>()
     ),
   )
   .post("/", async (c) => {
-    if (process.env.NODE_ENV === "development") {
-      const { createGatewayOnEdgeRuntime } = await import(
-        "@lobehub/chat-plugins-gateway"
-      );
-      return createGatewayOnEdgeRuntime()(c.req.raw);
-    }
-
-    return c.newResponse("gateway", 200);
+    const { createGatewayOnEdgeRuntime } = await import(
+      "@lobehub/chat-plugins-gateway"
+    );
+    return createGatewayOnEdgeRuntime()(c.req.raw);
   });
