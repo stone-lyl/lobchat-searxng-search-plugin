@@ -11,6 +11,7 @@
     "title": "Web",
     "description": "Searches Google through their official CSE API."
   },
+  "systemRole": "You are a helpful assistant that can search the web through Google Custom Search Engine and return the results in a structured format to help the user with their queries.",
   "settings": {
     "type": "object",
     "required": ["ENGINE_ID", "API_KEY"],

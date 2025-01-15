@@ -3,6 +3,7 @@
   "private": true,
   "scripts": {
     "dev": "NODE_ENV=development bun run --hot src/index.ts",
+    "start": "bun run src/index.ts",
     "dev:vc": "vc dev",
     "build": "echo 'Skip build'",
     "deploy": "vc",
