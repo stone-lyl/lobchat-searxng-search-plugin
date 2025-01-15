@@ -4,7 +4,7 @@
   "identifier": "web",
   "author": "rajput-hemant",
   "homepage": "https://github.com/proghit/lobechat-web-search",
-  "gateway": "http://lobechat-web.proghit.com/api/gateway",
+  "gateway": "https://lobechat-web.proghit.com/api/gateway",
   "meta": {
     "avatar": "https://banner2.cleanpng.com/20180413/rfe/avfci721i.webp",
     "tags": ["web", "search"],
@@ -31,7 +31,7 @@
   "api": [
     {
       "name": "searchWeb",
-      "url": "http://lobechat-web.proghit.com/api/search",
+      "url": "https://lobechat-web.proghit.com/api/search",
       "description": "Search Google for relevant web pages.",
       "parameters": {
         "required": ["query"],
