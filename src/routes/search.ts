@@ -1,4 +1,6 @@
 import { Hono } from "hono";
+import { JSDOM } from "jsdom";
+import { Readability } from "@mozilla/readability";
 import {
   createErrorResponse,
   getPluginSettingsFromRequest,
@@ -28,30 +30,69 @@ export const search = new Hono()
     }
 
     try {
-      const returnable: {
-        title: string;
-        link: string;
-        description: string;
-      }[] = [];
-
       console.log(`>>> Searching web for ${params.query}`);
 
       const search = await fetch(
         `https://www.googleapis.com/customsearch/v1?key=${settings.API_KEY}&cx=${settings.ENGINE_ID}&q=${encodeURIComponent(params.query)}`,
       );
+
       const json = (await search.json()) as {
         items: { title: string; link: string; snippet: string }[];
       };
 
-      for (const item of json.items) {
-        returnable.push({
-          title: item.title,
-          link: item.link,
-          description: item.snippet,
-        });
-      }
+      const firstFiveItems = json.items.slice(0, 5);
 
-      return c.newResponse(JSON.stringify(returnable));
+      const contentPromises = firstFiveItems.map(async (item) => {
+        try {
+          const response = await fetch(item.link);
+          const html = await response.text();
+          const doc = new JSDOM(html);
+          const reader = new Readability(doc.window.document);
+          const article = reader.parse();
+
+          return {
+            source: {
+              title: item.title,
+              link: item.link,
+              description: item.snippet,
+            },
+            content: article?.textContent || "",
+          };
+        } catch (error) {
+          console.error(`Error fetching content for ${item.link}:`, error);
+          return {
+            source: {
+              title: item.title,
+              link: item.link,
+              description: item.snippet,
+            },
+            content: "", // Return empty content if fetch fails
+          };
+        }
+      });
+
+      const results = await Promise.all(contentPromises);
+
+      const formattedResponse = `
+Role: I am an AI assistant with access to real-time web information. I can help answer questions by combining my knowledge with current information from reliable web sources. I aim to provide accurate, up-to-date, and well-referenced responses.
+
+Prompt: Use the following web search results to provide a comprehensive and accurate response. Include relevant information from multiple sources while maintaining accuracy. Cite sources when appropriate.
+
+Query: ${params.query}
+
+Data:
+${results
+  .filter((result) => result.content)
+  .map(
+    (result) => `
+Source: ${result.source.title}
+URL: ${result.source.link}
+Content: ${result.content.trim()}
+`,
+  )
+  .join("\n")}`;
+
+      return c.text(formattedResponse);
     } catch (err) {
       return createErrorResponse(
         PluginErrorType.PluginServerError,

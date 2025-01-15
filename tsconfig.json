@@ -4,6 +4,7 @@
     "module": "CommonJS",
     "skipLibCheck": true,
     "lib": ["esnext"],
+    "types": ["bun-types"],
 
     /* Bundler mode */
     "moduleResolution": "node",

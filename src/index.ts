@@ -11,7 +11,9 @@ export type Bindings = {
   development: boolean;
 };
 
-export const app = new Hono<{ Bindings: Bindings }>({ strict: false })
+export const app = new Hono<{ Bindings: Bindings }>({
+  strict: false,
+})
   .use(
     prettyJSON(),
     logger(),
@@ -39,7 +41,7 @@ export const app = new Hono<{ Bindings: Bindings }>({ strict: false })
 
   .get("/", (c) =>
     c.text(
-      "Welcome to LobeChat Web Search!, A plugin for LobeChat to search the web through Google Custom Search Engine. All the routes are under `/api`.",
+      "Welcome to Web Search Plugin!, A plugin for LobeChat to search the web through Google Custom Search Engine. All the routes are under `/api`.",
     ),
   )
 
@@ -47,7 +49,7 @@ export const app = new Hono<{ Bindings: Bindings }>({ strict: false })
 
   .get("/", (c) =>
     c.json({
-      message: "Welcome to LobeChat Web Search!",
+      message: "Welcome to Web Search Plugin!",
       description:
         "A plugin for LobeChat to search the web through Google Custom Search Engine.",
       routes: [

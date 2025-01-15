@@ -1,14 +1,14 @@
 {
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "version": "1",
-  "identifier": "lobechat-web",
+  "identifier": "web",
   "author": "rajput-hemant",
   "homepage": "https://github.com/proghit/lobechat-web-search",
   "gateway": "http://localhost:3000/api/gateway",
   "meta": {
     "avatar": "https://banner2.cleanpng.com/20180413/rfe/avfci721i.webp",
     "tags": ["web", "search"],
-    "title": "LobeChat Web Search",
+    "title": "Web",
     "description": "Searches Google through their official CSE API."
   },
   "settings": {
