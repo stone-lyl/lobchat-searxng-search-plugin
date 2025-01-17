@@ -1,4 +1,5 @@
 import { Hono } from "hono";
+import { createGatewayOnEdgeRuntime } from "@lobehub/chat-plugins-gateway";
 
 import type { Bindings } from "..";
 
@@ -9,9 +10,4 @@ export const gateway = new Hono<{ Bindings: Bindings }>()
       405,
     ),
   )
-  .post("/", async (c) => {
-    const { createGatewayOnEdgeRuntime } = await import(
-      "@lobehub/chat-plugins-gateway"
-    );
-    return createGatewayOnEdgeRuntime()(c.req.raw);
-  });
+  .post("/", async (c) => createGatewayOnEdgeRuntime()(c.req.raw));

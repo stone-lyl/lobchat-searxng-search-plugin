@@ -8,13 +8,11 @@ A web search plugin for LobeChat that enables internet search capabilities using
 - 🚀 Built with Hono.js for high performance
 - 🛡️ CORS enabled for cross-origin requests
 - 🔌 Compatible with LobeHub Chat Plugin SDK
-- ⚡ Deployable on Vercel
 
 ## Prerequisites
 
 - [Bun](https://bun.sh/) runtime
-- Google Custom Search API Key
-- Google Custom Search Engine ID
+- Google Custom Search API Key and Engine ID
 
 ## Setup
 
@@ -31,30 +29,12 @@ cd lobechat-websearch
 bun install
 ```
 
-3. Set up your environment variables:
-   - `API_KEY`: Your Google Custom Search API Key
-   - `ENGINE_ID`: Your Google Custom Search Engine ID
-
 ## Development
 
 To run the development server:
 
 ```bash
 bun run dev
-```
-
-For Vercel development environment:
-
-```bash
-bun run dev:vc
-```
-
-## Deployment
-
-The project is configured for deployment on Vercel. To deploy:
-
-```bash
-bun run deploy
 ```
 
 ## Type Checking

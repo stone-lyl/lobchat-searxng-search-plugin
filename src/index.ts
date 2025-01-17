@@ -1,11 +1,11 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 import { logger } from "hono/logger";
+import { serveStatic } from "hono/bun";
 import { prettyJSON } from "hono/pretty-json";
 
 import { gateway } from "./routes/gateway";
 import { search } from "./routes/search";
-import { serveStaticLocal } from "./middleware/serve-static-local";
 
 export type Bindings = {
   development: boolean;
@@ -36,7 +36,7 @@ export const app = new Hono<{ Bindings: Bindings }>({
       ],
       allowMethods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     }),
-    serveStaticLocal(),
+    serveStatic({ root: "./public" }),
   )
 
   .get("/", (c) =>

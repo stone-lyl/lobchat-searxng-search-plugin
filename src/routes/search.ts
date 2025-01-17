@@ -6,6 +6,8 @@ import {
   getPluginSettingsFromRequest,
   PluginErrorType,
 } from "@lobehub/chat-plugin-sdk";
+import { PROMPT } from "../lib/constants";
+import { ROLE } from "../lib/constants";
 
 type Settings = {
   API_KEY: string;
@@ -74,9 +76,9 @@ export const search = new Hono()
       const results = await Promise.all(contentPromises);
 
       const formattedResponse = `
-Role: I am an AI assistant with access to real-time web information. I can help answer questions by combining my knowledge with current information from reliable web sources. I aim to provide accurate, up-to-date, and well-referenced responses.
+Role: ${ROLE}
 
-Prompt: Use the following web search results to provide a comprehensive and accurate response. Include relevant information from multiple sources while maintaining accuracy. Cite sources when appropriate.
+Prompt: ${PROMPT}
 
 Query: ${params.query}
 

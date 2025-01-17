@@ -4,9 +4,7 @@
   "scripts": {
     "dev": "NODE_ENV=development bun run --hot src/index.ts",
     "start": "bun run src/index.ts",
-    "dev:vc": "vc dev",
     "build": "echo 'Skip build'",
-    "deploy": "vc",
     "type-check": "tsc --noEmit"
   },
   "dependencies": {
@@ -20,9 +18,7 @@
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.10.5",
     "bun-types": "^1.1.43",
-    "prettier": "^3.4.2",
-    "vercel": "^39.2.6",
-    "yarn": "^1.22.22"
+    "prettier": "^3.4.2"
   },
   "prettier": {}
 }
