@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-// import { JSDOM } from "jsdom";
-// import { Readability } from "@mozilla/readability";
+import { JSDOM } from "jsdom";
+import { Readability } from "@mozilla/readability";
 import {
   createErrorResponse,
   getPluginSettingsFromRequest,
@@ -35,25 +35,38 @@ export const search = new Hono()
     try {
       console.log(`>>> Searching web for ${params.query}`);
 
-      const url = `${settings.BASE_URL}?q=${encodeURIComponent(params.query)}&language=auto&time_range=&safesearch=0&categories=general&format=json`
+      const url = `${settings.BASE_URL}?q=${encodeURIComponent(params.query)}&language=auto&time_range=&safesearch=0&categories=general&format=json`;
       const search = await fetch(url);
 
-
       const json = (await search.json()) as {
-        results: { title: string; url: string; publishedDate?: string, content: string }[];
+        results: {
+          title: string;
+          url: string;
+          publishedDate?: string;
+          content: string;
+        }[];
       };
 
       const firstFiveItems = json.results.slice(0, 5);
 
-      const contentPromises = firstFiveItems.map(async (item) => {
+      const contentPromises = firstFiveItems.map(async (item, index) => {
         try {
+          let articleContent = item.content;
+          // Fetch content for the first two items
+          if (index < 2) {
+            const response = await fetch(item.url);
+            const html = await response.text();
+            const doc = new JSDOM(html);
+            const reader = new Readability(doc.window.document);
+            articleContent = reader.parse()?.textContent!;
+          }
           return {
             source: {
               title: item.title,
               link: item.url,
               publishedDate: item.publishedDate,
             },
-            content: item?.content || "",
+            content: articleContent || "",
           };
         } catch (error) {
           console.error(`Error fetching content for ${item.url}:`, error);
@@ -90,6 +103,7 @@ PublishedDate: ${result.source.publishedDate}
   )
   .join("\n")}`;
 
+      console.log(`>>> Returning search results ${formattedResponse}`);
       return context.text(formattedResponse);
     } catch (err) {
       return createErrorResponse(
