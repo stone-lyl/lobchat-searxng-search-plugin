@@ -14,15 +14,15 @@ type Settings = {
 };
 
 export const search = new Hono()
-  .get("/", (c) =>
-    c.json(
+  .get("/", (context) =>
+    context.json(
       { message: "GET /api/search is not supported, use POST instead" },
       405,
     ),
   )
-  .post("/", async (c) => {
-    const params = (await c.req.json()) as { query: string };
-    const settings = getPluginSettingsFromRequest<Settings>(c.req.raw);
+  .post("/", async (context) => {
+    const params = (await context.req.json()) as { query: string };
+    const settings = getPluginSettingsFromRequest<Settings>(context.req.raw);
     console.log(`>>> Using base URL: ${JSON.stringify(settings)}`);
 
     if (!settings) {
@@ -85,11 +85,12 @@ ${results
 Source: ${result.source.title}
 URL: ${result.source.link}
 Content: ${result.content.trim()}
+PublishedDate: ${result.source.publishedDate}
 `,
   )
   .join("\n")}`;
 
-      return c.text(formattedResponse);
+      return context.text(formattedResponse);
     } catch (err) {
       return createErrorResponse(
         PluginErrorType.PluginServerError,

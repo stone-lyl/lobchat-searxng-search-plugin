@@ -1,15 +1,15 @@
 {
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "version": "1",
-  "identifier": "web-fork",
-  "author": "Proghit",
-  "homepage": "https://github.com/proghit/lobechat-web-plugin",
+  "identifier": "web-search",
+  "author": "stone-lyl",
+  "homepage": "https://github.com/stone-lyl/lobechat-AI-web-search",
   "gateway": "http://localhost:3000/api/gateway",
   "meta": {
-    "avatar": "https://banner2.cleanpng.com/20180413/rfe/avfci721i.webp",
+    "avatar": "https://avatars.githubusercontent.com/u/80454229?s=28&v=28",
     "tags": ["web", "search"],
-    "title": "Web",
-    "description": "Smart web search that reads and analyzes pages to deliver comprehensive answers from Google results."
+    "title": "Web-Search",
+    "description": "A smart web search that reads and analyzes pages to provide thorough answers based on SearxNG results."
   },
   "settings": {
     "type": "object",
@@ -26,14 +26,14 @@
     {
       "name": "searchWeb",
       "url": "http://localhost:3000/api/search",
-      "description": "Search Google for relevant web pages.",
+      "description": "Search SearxNG for relevant web pages.",
       "parameters": {
         "required": ["query"],
         "type": "object",
         "properties": {
           "query": {
             "type": "string",
-            "description": "What the user is looking for"
+            "description": "Identify what the user is seeking"
           }
         }
       }

@@ -1,6 +1,7 @@
 {
   "name": "lobchat-web-plugin",
   "private": true,
+  "author": "stone-lyl",
   "scripts": {
     "dev": "NODE_ENV=development bun run --hot src/index.ts",
     "start": "bun run src/index.ts",
