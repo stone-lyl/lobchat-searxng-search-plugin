@@ -1,6 +1,6 @@
 import { Hono } from "hono";
-import { JSDOM } from "jsdom";
-import { Readability } from "@mozilla/readability";
+// import { JSDOM } from "jsdom";
+// import { Readability } from "@mozilla/readability";
 import {
   createErrorResponse,
   getPluginSettingsFromRequest,
@@ -10,8 +10,7 @@ import { PROMPT } from "../lib/constants";
 import { ROLE } from "../lib/constants";
 
 type Settings = {
-  API_KEY: string;
-  ENGINE_ID: string;
+  BASE_URL: string;
 };
 
 export const search = new Hono()
@@ -24,8 +23,10 @@ export const search = new Hono()
   .post("/", async (c) => {
     const params = (await c.req.json()) as { query: string };
     const settings = getPluginSettingsFromRequest<Settings>(c.req.raw);
+    console.log(`>>> Using base URL: ${JSON.stringify(settings)}`);
 
     if (!settings) {
+      console.error("Plugin settings not found.");
       return createErrorResponse(PluginErrorType.PluginSettingsInvalid, {
         message: "Plugin settings not found.",
       });
@@ -34,39 +35,33 @@ export const search = new Hono()
     try {
       console.log(`>>> Searching web for ${params.query}`);
 
-      const search = await fetch(
-        `https://www.googleapis.com/customsearch/v1?key=${settings.API_KEY}&cx=${settings.ENGINE_ID}&q=${encodeURIComponent(params.query)}`,
-      );
+      const url = `${settings.BASE_URL}?q=${encodeURIComponent(params.query)}&language=auto&time_range=&safesearch=0&categories=general&format=json`
+      const search = await fetch(url);
+
 
       const json = (await search.json()) as {
-        items: { title: string; link: string; snippet: string }[];
+        results: { title: string; url: string; publishedDate?: string, content: string }[];
       };
 
-      const firstFiveItems = json.items.slice(0, 5);
+      const firstFiveItems = json.results.slice(0, 5);
 
       const contentPromises = firstFiveItems.map(async (item) => {
         try {
-          const response = await fetch(item.link);
-          const html = await response.text();
-          const doc = new JSDOM(html);
-          const reader = new Readability(doc.window.document);
-          const article = reader.parse();
-
           return {
             source: {
               title: item.title,
-              link: item.link,
-              description: item.snippet,
+              link: item.url,
+              publishedDate: item.publishedDate,
             },
-            content: article?.textContent || "",
+            content: item?.content || "",
           };
         } catch (error) {
-          console.error(`Error fetching content for ${item.link}:`, error);
+          console.error(`Error fetching content for ${item.url}:`, error);
           return {
             source: {
               title: item.title,
-              link: item.link,
-              description: item.snippet,
+              link: item.url,
+              publishedDate: item.publishedDate,
             },
             content: "", // Return empty content if fetch fails
           };

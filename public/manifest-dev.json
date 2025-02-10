@@ -1,7 +1,7 @@
 {
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "version": "1",
-  "identifier": "web",
+  "identifier": "web-fork",
   "author": "Proghit",
   "homepage": "https://github.com/proghit/lobechat-web-plugin",
   "gateway": "http://localhost:3000/api/gateway",
@@ -13,17 +13,12 @@
   },
   "settings": {
     "type": "object",
-    "required": ["ENGINE_ID", "API_KEY"],
+    "required": ["BASE_URL"],
     "properties": {
-      "ENGINE_ID": {
-        "title": "Engine ID",
+      "BASE_URL": {
+        "title": "Base URL",
         "type": "string",
-        "format": "password"
-      },
-      "API_KEY": {
-        "title": "API Key",
-        "type": "string",
-        "format": "password"
+        "format": "uri"
       }
     }
   },
