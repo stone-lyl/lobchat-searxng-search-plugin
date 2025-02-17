@@ -17,11 +17,11 @@ A LobeChat plugin that enables web searches through SearxNG instances, providing
 
 1. Clone the repository:
     ```bash
-    git clone https://github.com/stone-lyl/lobechat-AI-web-search.git
+    git clone https://github.com/stone-lyl/lobchat-searxng-search-plugin.git
     ```
 2. Navigate to the repository:
     ```bash
-    cd lobechat-AI-web-search
+    cd lobchat-searxng-search-plugin
     ```
 3. Install dependencies:
     ```bash

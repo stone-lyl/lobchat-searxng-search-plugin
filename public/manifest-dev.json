@@ -3,7 +3,7 @@
   "version": "1",
   "identifier": "lobchat-searxng-search-plugin",
   "author": "stone-lyl",
-  "homepage": "https://github.com/stone-lyl/lobechat-AI-web-search",
+  "homepage": "https://github.com/stone-lyl/lobchat-searxng-search-plugin",
   "gateway": "http://localhost:3400/api/gateway",
   "meta": {
     "avatar": "https://avatars.githubusercontent.com/u/80454229?s=28&v=28",
