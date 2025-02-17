@@ -1,50 +1,50 @@
-# LobeChat Web Search Plugin
+# LobeChat SearxNG Search Plugin
 
-A web search plugin for LobeChat that enables internet search capabilities using the Google Custom Search API.
+[![Bun](https://img.shields.io/badge/Runtime-Bun-%23fbf0df)](https://bun.sh)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](https://opensource.org/licenses/MIT)
+
+A LobeChat plugin that enables web searches through SearxNG instances, providing AI-powered analysis of search results.
 
 ## Features
 
-- 🔍 Google Custom Search integration
-- 🚀 Built with Hono.js for high performance
-- 🛡️ CORS enabled for cross-origin requests
-- 🔌 Compatible with LobeHub Chat Plugin SDK
+- 🔍 Web search powered by SearxNG
+- 🧠 AI analysis of webpage content
+- 🔒 Self-hostable solution
+- 🐳 Docker container support
+- 🌐 Customizable base URL configuration
+
+## Installation
+
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/stone-lyl/lobechat-AI-web-search.git
+    ```
+2. Navigate to the repository:
+    ```bash
+    cd lobechat-AI-web-search
+    ```
+3. Install dependencies:
+    ```bash
+    bun install
+    ```
+4. Start the development server:
+    ```bash
+    bun run dev
+    ```
+5. deploy the plugin in docker:
+    using the `Dockerfile` provided.
+
+## Usage
+
+1. Open the LobeChat web app:
+    - Go to [https://lobechat.com](https://lobechat.com)
+2. Add the plugin:
+    - Click on the "Plugin Store" button.
+    - Select "LobeChat SearxNG Search Plugin" from the list.
+    - Enter the base URL for your SearxNG instance.
 
 ## Prerequisites
 
-- [Bun](https://bun.sh/) runtime
-- Google Custom Search API Key and Engine ID
-
-## Setup
-
-1. Clone the repository:
-
-```bash
-git clone <your-repo-url>
-cd lobechat-websearch
-```
-
-2. Install dependencies:
-
-```bash
-bun install
-```
-
-## Development
-
-To run the development server:
-
-```bash
-bun run dev
-```
-
-## Type Checking
-
-Run type checks using TypeScript:
-
-```bash
-bun run type-check
-```
-
-## License
-
-MIT License
+- [Bun](https://bun.sh) v1.1.4 or later
+- Node.js v18+
+- Docker (optional)
