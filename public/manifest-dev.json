@@ -1,14 +1,14 @@
 {
   "$schema": "../node_modules/@lobehub/chat-plugin-sdk/schema.json",
   "version": "1",
-  "identifier": "web-search",
+  "identifier": "lobchat-searxng-search-plugin",
   "author": "stone-lyl",
   "homepage": "https://github.com/stone-lyl/lobechat-AI-web-search",
-  "gateway": "http://localhost:3000/api/gateway",
+  "gateway": "http://localhost:3400/api/gateway",
   "meta": {
     "avatar": "https://avatars.githubusercontent.com/u/80454229?s=28&v=28",
     "tags": ["web", "search"],
-    "title": "Web-Search",
+    "title": "SearxNG Search Plugin",
     "description": "A smart web search that reads and analyzes pages to provide thorough answers based on SearxNG results."
   },
   "settings": {
@@ -25,7 +25,7 @@
   "api": [
     {
       "name": "searchWeb",
-      "url": "http://localhost:3000/api/search",
+      "url": "http://localhost:3400/api/search",
       "description": "Search SearxNG for relevant web pages.",
       "parameters": {
         "required": ["query"],
