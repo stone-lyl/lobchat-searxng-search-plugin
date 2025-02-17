@@ -23,5 +23,8 @@
     "bun-types": "^1.1.43",
     "prettier": "^3.4.2"
   },
-  "prettier": {}
+  "prettier": {},
+  "volta": {
+    "node": "21.6.1"
+  }
 }
