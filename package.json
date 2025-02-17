@@ -1,5 +1,7 @@
 {
-  "name": "lobchat-web-plugin",
+  "name": "lobchat-searxng-search-plugin",
+  "version": "1.0.0",
+  "description": "LobeChat Web Search Plugin for SearxNG",
   "private": true,
   "author": "stone-lyl",
   "scripts": {
