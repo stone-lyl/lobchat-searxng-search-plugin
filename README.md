@@ -42,9 +42,12 @@ A LobeChat plugin that enables web searches through SearxNG instances, providing
     - Select "LobeChat SearxNG Search Plugin" from the list.
 3. You should configure your SearxNG settings.yml to allow JSON formats.[SearxNG Settings](https://github.com/searxng/searxng/discussions/3542)
 4. Enter the BASE_URL for your SearxNG link
-![Image](https://github.com/user-attachments/assets/ffcc271f-1a09-4131-9d12-a9323287df18)
+
+    <img src="https://github.com/user-attachments/assets/ffcc271f-1a09-4131-9d12-a9323287df18" alt="Image description" width="400">
+
 5. Open the LobeChat conversation interface to use it.
-![searxng-video](https://github.com/user-attachments/assets/deaf8284-c3f1-4b09-99a0-2896fb66667a)
+   
+https://github.com/user-attachments/assets/deaf8284-c3f1-4b09-99a0-2896fb66667a
 
 
 ## Prerequisites
