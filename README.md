@@ -10,8 +10,7 @@ A LobeChat plugin that enables web searches through SearxNG instances, providing
 - 🔍 Web search powered by SearxNG
 - 🧠 AI analysis of webpage content
 - 🔒 Self-hostable solution
-- 🐳 Docker container support
-- 🌐 Customizable base URL configuration
+- 🌐 Global real-time information
 
 ## Installation
 

@@ -53,9 +53,9 @@ export const search = new Hono()
         }[];
       };
 
-      const firstFiveItems = json.results.slice(0, 5);
+      const firstThreeItems = json.results.slice(0, 3);
 
-      const contentPromises = firstFiveItems.map(async (item, index) => {
+      const contentPromises = firstThreeItems.map(async (item, index) => {
         try {
           let articleContent = item.content;
           // Fetch content for the first two items
@@ -109,6 +109,7 @@ export const search = new Hono()
       console.log(`>>> Returning search results ${formattedResponse}`);
       return context.text(formattedResponse);
     } catch (err) {
+      console.error(`Error searching web:`, err);
       return createErrorResponse(
         PluginErrorType.PluginServerError,
         err as object,
