@@ -32,6 +32,12 @@ export const search = new Hono()
       });
     }
 
+    if (!params.query || params.query.trim() === "") {
+      return createErrorResponse(PluginErrorType.BadRequest, {
+        message: "Search query cannot be empty.",
+      });
+    }
+    
     try {
       console.log(`>>> Searching web for ${params.query}`);
 
@@ -84,24 +90,21 @@ export const search = new Hono()
       const results = await Promise.all(contentPromises);
 
       const formattedResponse = `
-Role: ${ROLE}
-
-Prompt: ${PROMPT}
-
-Query: ${params.query}
-
-Data:
-${results
-  .filter((result) => result.content)
-  .map(
-    (result) => `
-Source: ${result.source.title}
-URL: ${result.source.link}
-Content: ${result.content.trim()}
-PublishedDate: ${result.source.publishedDate}
-`,
-  )
-  .join("\n")}`;
+        Role: ${ROLE}
+        Prompt: ${PROMPT}
+        Query: ${params.query}
+        Data:
+        ${results
+        .filter((result) => result.content)
+        .map(
+          (result) => `
+            Source: ${result.source.title}
+            URL: ${result.source.link}
+            Content: ${result.content.trim()}
+            PublishedDate: ${result.source.publishedDate}
+            ----
+            `)
+            .join("\n")}`;
 
       console.log(`>>> Returning search results ${formattedResponse}`);
       return context.text(formattedResponse);
