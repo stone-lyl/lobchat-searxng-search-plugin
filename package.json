@@ -5,7 +5,7 @@
   "private": true,
   "author": "stone-lyl",
   "scripts": {
-    "dev": "NODE_ENV=development bun run --hot src/index.ts",
+    "dev": "NODE_ENV=development bun run --hot --port 3400 src/index.ts",
     "start": "bun run src/index.ts",
     "build": "echo 'Skip build'",
     "type-check": "tsc --noEmit"
